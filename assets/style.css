@@ -66,6 +66,11 @@ code {
 .eyebrow .nav.off { opacity: 0.25; }
 .eyebrow .right { display: flex; align-items: center; gap: 4px; }
 #theme { background: none; border: 0; color: inherit; cursor: pointer; padding: 0; }
+#layout {
+  background: none; border: 1px solid var(--rule-soft); border-radius: 999px; color: inherit; cursor: pointer;
+  font: inherit; letter-spacing: inherit; text-transform: inherit; padding: 6px 12px; min-height: 32px; margin-left: 8px;
+}
+#layout:hover, #layout[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); }
 
 .title {
   text-align: center; font: 700 clamp(2.4rem, 7.5vw, 4.8rem)/1 var(--display);
@@ -230,7 +235,15 @@ code {
 .stream .learn { margin: 18px 0; }
 .stream .learn .body { columns: auto; }
 
-/* section heads (older editions) */
+/* fun & weird corner, after the stream */
+.fun-sec { max-width: 52rem; margin: 8px auto 0; }
+.fun-sec .section-head { color: var(--accent); }
+.fun-list .story h3 { font-size: 1.2rem; }
+
+/* newspaper layout: the same stories grouped into sections */
+.paper .front + .learn { margin-top: 30px; }
+
+/* section heads (newspaper layout and older editions) */
 .section-head {
   display: flex; align-items: center; gap: 14px; margin: 40px 0 0;
   font: 700 0.84rem/1 var(--display); letter-spacing: 0.16em; text-transform: uppercase;
