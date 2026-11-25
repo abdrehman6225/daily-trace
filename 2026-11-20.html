@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=1a560a11">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='Georgia' font-weight='700'>T</text></svg>">
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;if(localStorage.getItem('skim')==='1')document.documentElement.classList.add('skim')}catch(e){}</script>
 </head>
@@ -99,6 +99,16 @@
     chips.forEach(function(c){c.setAttribute('aria-pressed',c.dataset.f===k)});
     stories.forEach(function(s){s.hidden=!(k==='all'||(k==='unread'?!done[s.id]:s.dataset.sec===k))});
     var ln=document.getElementById('learn');if(ln)ln.hidden=k!=='all';
+    R.classList.toggle('filtered',k!=='all');
+    /* newspaper layout: drop section blocks left empty by the filter */
+    document.querySelectorAll('.paper-view section').forEach(function(sec){
+      sec.hidden=!sec.querySelector('.story:not([hidden])')});
+    /* bring the result into view: the section head in the newspaper layout,
+       else the first matching story; "All" goes back to the top of the paper */
+    var to=k==='all'?document.querySelector('.note'):document.getElementById('sec-'+k);
+    if(k!=='all'&&!to)to=document.querySelector('.chips');
+    if(!to||to.closest('[hidden]'))to=[].slice.call(document.querySelectorAll('.story[id]')).filter(function(s){return !s.closest('[hidden]')})[0];
+    if(to)to.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
   }
   chips.forEach(function(c){c.onclick=function(){filter(c.dataset.f)}});
 
