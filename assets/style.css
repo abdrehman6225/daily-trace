@@ -241,7 +241,20 @@ code {
 .thread a:hover { text-decoration: underline; }
 .thread .tnote { font-style: italic; }
 .eyebrow .left { display: flex; gap: 18px; }
-.threads { max-width: 52rem; margin: 0 auto; }
+.threads { max-width: 78rem; margin: 0 auto; }
+.threads > .note { max-width: 52rem; }
+.today-mark { color: var(--accent); font-size: 0.7em; margin-right: 6px; vertical-align: 0.15em; }
+.thread-index .index-head { margin: 10px 0 4px; }
+.thread-index li a { display: block; }
+.thread-card.today h2 { color: var(--accent); }
+.today-badge { color: var(--accent); margin-right: 10px; }
+.timeline li.is-today a { color: var(--accent); }
+.timeline li.is-today time { color: var(--accent); }
+@media (min-width: 1100px) {
+  .threads-layout { display: grid; grid-template-columns: minmax(0, 2.4fr) minmax(280px, 1fr); gap: 52px; }
+  .threads-layout > .thread-list { grid-column: 1; grid-row: 1; }
+  .threads-layout > .thread-index { top: 16px; max-height: calc(100vh - 32px); }
+}
 .thread-card { padding: 26px 0; border-bottom: 1px solid var(--rule-hair); scroll-margin-top: 16px; }
 .thread-card h2 { font: 700 1.55rem/1.2 var(--display); margin: 0 0 10px; }
 .thread-card:target h2 { color: var(--accent); }
