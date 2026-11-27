@@ -235,6 +235,88 @@ code {
 .stream .learn { margin: 18px 0; }
 .stream .learn .body { columns: auto; }
 
+/* threads: the line under a story, and the Threads page */
+.thread { margin: 12px 0 0; font-size: 0.85rem; color: var(--ink-faint); }
+.thread a { font: 700 0.72rem/1.3 var(--display); letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); text-decoration: none; }
+.thread a:hover { text-decoration: underline; }
+.thread .tnote { font-style: italic; }
+.eyebrow .left { display: flex; gap: 18px; }
+.threads { max-width: 52rem; margin: 0 auto; }
+.thread-card { padding: 26px 0; border-bottom: 1px solid var(--rule-hair); scroll-margin-top: 16px; }
+.thread-card h2 { font: 700 1.55rem/1.2 var(--display); margin: 0 0 10px; }
+.thread-card:target h2 { color: var(--accent); }
+.thread-card .state { margin: 0 0 14px; }
+.timeline { list-style: none; margin: 0; padding: 0 0 0 14px; border-left: 2px solid var(--rule-soft); }
+.timeline li { padding: 6px 0; font-size: 0.92rem; }
+.timeline time { font: 600 0.72rem var(--mono); color: var(--ink-faint); margin-right: 10px; }
+.timeline a { font: 600 0.95rem/1.3 var(--display); text-decoration: none; }
+.timeline span { display: block; color: var(--ink-soft); font-style: italic; font-size: 0.86rem; }
+
+/* Connect the dots: every third edition, under the editor's note */
+.recap {
+  max-width: 52rem; margin: 18px auto 26px; padding: 18px clamp(16px, 3vw, 28px);
+  background: var(--bg-alt); border-top: 3px solid var(--accent); scroll-margin-top: calc(var(--bar) + 12px);
+}
+.recap .label { color: var(--accent); }
+.recap h2 { font: 700 1.45rem/1.2 var(--display); margin: 0 0 10px; }
+.recap ol { margin: 0; padding-left: 1.2em; }
+.recap li { margin: 0 0 12px; }
+.recap li p { margin: 0; }
+.recap .refs { font-size: 0.8rem; color: var(--ink-faint); margin-top: 4px; }
+.recap .refs a { color: var(--ink-soft); }
+.recap .shift { margin: 12px 0 0; padding-left: 12px; border-left: 3px solid var(--accent); font-size: 0.95rem; }
+.recap .shift b { color: var(--accent); font-family: var(--display); }
+.filtered .recap { display: none; }
+
+/* Threads moving today: collapsed by default, under the note */
+.threads-today { max-width: 52rem; margin: 0 auto 22px; border-top: 1px solid var(--rule-hair); border-bottom: 1px solid var(--rule-hair); }
+.threads-today > summary {
+  list-style: none; cursor: pointer; display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap;
+  padding: 12px 0; min-height: 44px;
+}
+.threads-today > summary::-webkit-details-marker { display: none; }
+.threads-today > summary::before { content: "＋"; color: var(--accent); font-size: 0.8rem; }
+.threads-today[open] > summary::before { content: "－"; }
+.threads-today > summary .label { margin: 0; color: var(--accent); }
+.threads-today > summary .names { font-size: 0.85rem; color: var(--ink-faint); font-style: italic; }
+.threads-today ol { list-style: none; margin: 0; padding: 0 0 6px; }
+.threads-today li { padding: 12px 0; border-top: 1px solid var(--rule-hair); }
+.threads-today h3 { margin: 0 0 6px; font: 700 1.1rem/1.25 var(--display); display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.threads-today h3 a { text-decoration: none; }
+.threads-today h3 span { font: 400 0.72rem var(--mono); color: var(--ink-faint); }
+.threads-today .state { margin: 0 0 6px; font-size: 0.95rem; }
+.threads-today .today { margin: 0; font-size: 0.82rem; color: var(--ink-faint); }
+.threads-today .today a { color: var(--ink-soft); }
+.threads-today .all { margin: 4px 0 12px; font-size: 0.82rem; }
+.filtered .threads-today { display: none; }
+
+/* archive calendar */
+.calendar { max-width: 72rem; margin: 10px auto 0; }
+.month { margin: 28px 0 10px; }
+.month-h { display: flex; justify-content: space-between; align-items: baseline; font: 700 1.5rem/1.2 var(--display); margin: 0 0 10px; padding-bottom: 6px; border-bottom: 2px solid var(--rule); }
+.month-h span { font: 400 0.75rem var(--mono); color: var(--ink-faint); }
+.cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.dow { font: 700 0.66rem/1 var(--display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); padding: 4px 6px; }
+.day { position: relative; min-height: 112px; padding: 8px 9px 12px; border: 1px solid var(--rule-hair); border-radius: 3px; display: flex; flex-direction: column; gap: 4px; overflow: hidden; }
+.day.out { border-color: transparent; }
+.day.none { color: var(--ink-faint); opacity: 0.55; }
+.day.has { text-decoration: none; background: var(--bg-alt); }
+.day.has:hover { border-color: var(--accent); }
+.day.has:hover .lead { color: var(--accent); }
+.day.today { border-color: var(--accent); }
+.day .dn { font: 700 0.95rem/1 var(--display); display: flex; justify-content: space-between; }
+.day .dots { color: var(--accent); font-size: 0.7rem; }
+.day .lead { font: 600 0.78rem/1.25 var(--display); display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.day .meta { margin-top: auto; font: 0.66rem var(--mono); color: var(--ink-faint); }
+.day .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--rule-hair); }
+.day .bar i { display: block; height: 100%; width: 0; background: var(--accent); }
+.day.all-read .lead { color: var(--ink-soft); }
+@media (max-width: 700px) {
+  .day { min-height: 54px; padding: 6px; }
+  .day .lead, .day .meta { display: none; }
+  .dow { padding: 2px; font-size: 0.58rem; letter-spacing: 0.04em; }
+}
+
 /* fun & weird corner, after the stream */
 .fun-sec { max-width: 52rem; margin: 8px auto 0; }
 .fun-sec .section-head { color: var(--accent); }
